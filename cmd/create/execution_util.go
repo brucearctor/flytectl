@@ -63,12 +63,12 @@ func getParamMap(lp *admin.LaunchPlan) (map[string]interface{}, error) {
 			fmt.Println("error creating default value for literal type ", v.Var.Type)
 			return nil, err
 		}
-		if paramMap[k], err = coreutils.FetchFromLiteral(varTypeValue); err != nil {
+		if paramMap[k], err = coreutils.ExtractFromLiteral(varTypeValue); err != nil {
 			return nil, err
 		}
 		// Override if there is a default value
 		if paramsDefault, ok := v.Behavior.(*core.Parameter_Default); ok {
-			if paramMap[k], err = coreutils.FetchFromLiteral(paramsDefault.Default); err != nil {
+			if paramMap[k], err = coreutils.ExtractFromLiteral(paramsDefault.Default); err != nil {
 				return nil, err
 			}
 		}
