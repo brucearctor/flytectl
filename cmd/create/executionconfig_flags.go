@@ -41,8 +41,8 @@ func (ExecutionConfig) mustMarshalJSON(v json.Marshaler) string {
 // flags is json-name.json-sub-name... etc.
 func (cfg ExecutionConfig) GetPFlagSet(prefix string) *pflag.FlagSet {
 	cmdFlags := pflag.NewFlagSet("ExecutionConfig", pflag.ExitOnError)
-	cmdFlags.StringVarP(&(executionConfig.Version),fmt.Sprintf("%v%v", prefix, "version"), "v", "", "version of the entity to be registered with flyte.")
-	cmdFlags.StringVarP(&(executionConfig.File),fmt.Sprintf("%v%v", prefix, "file"), "f", "", "file for the project definition.")
-
+	cmdFlags.StringVarP(&(executionConfig.Version),fmt.Sprintf("%v%v", prefix, "version"), "v", "", "version of the launch plan to be executed.")
+	cmdFlags.StringVarP(&(executionConfig.File),fmt.Sprintf("%v%v", prefix, "file"), "f", "", "file for the execution params.If not specified defaults to <launchplan_name>.inputs.yaml.")
+	cmdFlags.BoolVarP(&(executionConfig.GenParam),fmt.Sprintf("%v%v", prefix, "genParam"), "g", false, "flag to indicate the generation of params file.")
 	return cmdFlags
 }
